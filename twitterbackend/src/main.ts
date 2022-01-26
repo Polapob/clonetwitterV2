@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
+import { raw } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +12,7 @@ async function bootstrap() {
     credentials: true,
   });
   app.use(cookieParser());
+  app.use(raw({ type: 'application/json˝' }));
   await app.listen(4000);
 }
 bootstrap();
