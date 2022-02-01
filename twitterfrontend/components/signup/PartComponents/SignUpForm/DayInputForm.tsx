@@ -19,8 +19,8 @@ const DayInputForm = () => {
   };
   return (
     <FormControl
+      className={classes.form}
       sx={{
-        border: "0px solid gray",
         width: "125px",
         marginBottom: "45px",
         label: {
@@ -29,9 +29,14 @@ const DayInputForm = () => {
       }}
     >
       <InputLabel
+        className={classes.label}
         variant="outlined"
         id="demo-controlled-open-select-label"
-        sx={{ backgroundColor: "black" }}
+        sx={{
+          backgroundColor: "black",
+          paddingLeft: "4px",
+          paddingRight: "4px",
+        }}
       >
         Day
       </InputLabel>
@@ -39,13 +44,8 @@ const DayInputForm = () => {
         labelId="demo-controlled-open-select-label"
         id="demo-controlled-open-select"
         value={day}
-        label={month.Dates}
+        label="Day"
         className={classes.select}
-        sx={{
-          ":focus": {
-            backgroundColor: "yellow",
-          },
-        }}
         onChange={handleOnDayChange}
       >
         {month.Dates.map((val, idx) => {
@@ -63,16 +63,32 @@ const DayInputForm = () => {
 export default DayInputForm;
 
 const useStyles = makeStyles({
+  form: {
+    "& .root": {
+      border: "2px solid black",
+    },
+  },
+  label: {
+    "& .MuiOutlinedInput-root":{
+      border: "2px solid blue"
+    }
+  },
   select: {
-    "&select": {
-      backgroundColor: "red",
-      "&:hover": {},
+    "& .MuiSelect-select": {
+      border: "1px solid rgb(47, 51, 54)",
     },
-    "&:hover": {},
-    "&:focus": {
-      backgroundColor: "yellow",
+    "& .Mui-focused": {
+      border: "0px solid gray",
     },
+    "& .MuiSelect-select-focused": {
+      border: "0px solid black",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "gray",
+      fontSize: "32px",
+    },
+    // "& .Mui"
     color: "white",
-    border: "2px solid gray",
+    // border: "2px solid gray",
   },
 });

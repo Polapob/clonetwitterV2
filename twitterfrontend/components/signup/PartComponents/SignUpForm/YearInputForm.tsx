@@ -62,16 +62,26 @@ const YearInputForm = () => {
 };
 export default YearInputForm;
 const useStyles = makeStyles({
+  form: {
+    "& .root": {
+      border: "2px solid black",
+    },
+  },
+  label: {},
   select: {
-    "&select": {
-      backgroundColor: "red",
-      "&:hover": {},
+    "& .MuiSelect-select": {
+      border: "1px solid rgb(47, 51, 54)",
     },
-    "&:hover": {},
-    "&:focus": {
-      backgroundColor: "yellow",
+
+    "& .MuiSelect-select-focused": {
+      border: "2px solid black",
     },
+    "& .MuiSvgIcon-root": {
+      color: "gray",
+      fontSize: "32px",
+    },
+    // "& .Mui"
     color: "white",
-    border: "2px solid gray",
+    // border: "2px solid gray",
   },
 });

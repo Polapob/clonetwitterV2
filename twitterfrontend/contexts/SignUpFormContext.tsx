@@ -12,5 +12,7 @@ interface signUpUser {
   setYear: Dispatch<SetStateAction<string>>;
   email: string;
   setEmail: Dispatch<SetStateAction<string>>;
+  password: string;
+  setPassword: Dispatch<SetStateAction<string>>;
 }
 export const SignUpFormContext = React.createContext({} as signUpUser);

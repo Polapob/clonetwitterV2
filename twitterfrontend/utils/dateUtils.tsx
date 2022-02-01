@@ -20,7 +20,7 @@ export const MonthLists = [
     "ธันวาคม",
   ];
 
-export const Yearlists = listGenerator(1900, 2022);
+export const Yearlists = listGenerator(1900, 2022).reverse();
 export const maxDateObject: { [key: string]: number } = {
   มกราคม: 31,
   กุมพาพันธ์: 29,

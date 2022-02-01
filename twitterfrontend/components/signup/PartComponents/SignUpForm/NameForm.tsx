@@ -1,15 +1,12 @@
 import { Stack, TextField, Typography } from "@mui/material";
-import {
-  ChangeEvent,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { makeStyles } from "@mui/styles";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { SignUpFormContext } from "../../../../contexts/SignUpFormContext";
 
 const NameForm = () => {
-  const {name,setName} = useContext(SignUpFormContext);
-  const [queryName, setQueryName] = useState<string | undefined>("");
+  const classes = useStyles();
+  const { name, setName } = useContext(SignUpFormContext);
+  const [queryName, setQueryName] = useState<string>(name);
   const [errorData, setErrorData] = useState<{
     isError: boolean;
     errorText: string;
@@ -41,10 +38,12 @@ const NameForm = () => {
     }, 500);
     return () => clearTimeout(timer);
   }, [queryName, setName]);
+  
   // console.log(queryName?.length);
   return (
     <Stack>
       <TextField
+        className={classes.textField}
         error={errorData.isError}
         id="outlined-basic"
         label="ชื่อ"
@@ -57,9 +56,15 @@ const NameForm = () => {
           input: { color: "white" },
           label: {
             color: "rgb(133, 133, 133)",
+            backgroundColor: "black",
+            paddingLeft:"4px",
+            paddingRight:"4px"
+          },
+          ":focus": {
+            border: "2px solid blue",
           },
         }}
-      ></TextField>
+      />
       <Typography
         sx={{
           color: "rgb(133, 133, 133)",
@@ -75,3 +80,20 @@ const NameForm = () => {
   );
 };
 export default NameForm;
+
+const useStyles = makeStyles({
+  textField: {
+    "& .MuiInputBase-root": {
+      border: "1px solid rgb(47, 51, 54)",
+    },
+    "& .Mui-focused": {
+      border: "0px solid gray",
+    },
+    "& .Mui-error":{
+      border: "0px solid black"
+    },
+    "":{
+      color:"black"
+    }
+  },
+});

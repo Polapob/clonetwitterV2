@@ -24,7 +24,7 @@ export class AuthService {
     scope: string;
   }): Promise<{ user: User; refreshToken: string; accessToken: string }> {
     let user: User;
-    const { code, scope } = loginObject;
+    const { code } = loginObject;
     const options: RequestOptions = {
       method: 'POST',
       data: {
@@ -146,7 +146,4 @@ export class AuthService {
       }
     }
   }
-  /* async verifyPayload(payload: JwtPayload): Promise<User> {
-    let user: User;
-  } */
 }

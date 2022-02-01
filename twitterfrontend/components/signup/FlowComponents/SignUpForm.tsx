@@ -1,27 +1,19 @@
-import {
-  Button,
-  Container,
-  Stack,
-  Typography,
-  Grid,
-  SelectChangeEvent,
-} from "@mui/material";
+import { Container, Stack, Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Link from "next/link";
-import React from "react";
-import {
-  listGenerator,
-  Yearlists,
-  maxDateObject,
-} from "../../../utils/dateUtils";
+import React, { MouseEventHandler } from "react";
 import MonthInputForm from "../../../components/signup/PartComponents/SignUpForm/MonthInputForm";
 import EmailForm from "../../../components/signup/PartComponents/SignUpForm/EmailForm";
 import NameForm from "../../../components/signup/PartComponents/SignUpForm/NameForm";
 import DayInputForm from "../PartComponents/SignUpForm/DayInputForm";
 import YearInputForm from "../PartComponents/SignUpForm/YearInputForm";
+import NextButton from "../PartComponents/SignUpForm/NextButton";
 
-const SignUpForm = () => {
+interface Props {
+  addIncrement: MouseEventHandler<HTMLButtonElement>;
+}
+const SignUpForm = ({ addIncrement }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.modal}>
@@ -109,20 +101,8 @@ const SignUpForm = () => {
           <DayInputForm />
           <YearInputForm />
         </Stack>
-        <Button
-          sx={{
-            ":hover": {
-              backgroundColor: "rgb(215, 219, 220)",
-            },
-            marginBottom: "3rem",
-            borderRadius: "1.5rem",
-            paddingTop: "0.65rem",
-            paddingBottom: "0.65rem",
-            backgroundColor: "rgb(239, 243, 244)",
-          }}
-        >
-          ถัดไป
-        </Button>
+
+        <NextButton addIncrement={addIncrement} />
       </Container>
     </div>
   );

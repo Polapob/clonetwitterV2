@@ -7,26 +7,17 @@ import {
   useState,
 } from "react";
 import { SignUpFormContext } from "../../../../contexts/SignUpFormContext";
+import { checkEmailFormat } from "../../../../utils/emailUtils";
 
 const EmailForm = () => {
-  const { setEmail } = useContext(SignUpFormContext);
+  const { setEmail,email } = useContext(SignUpFormContext);
   console.log("email form re-render!")
   const classes = useStyles();
   const [errorData, setErrorData] = useState<{
     isError: boolean;
     errorText: string;
   }>({ isError: false, errorText: "" });
-  const [emailQuery, setEmailQuery] = useState<string>();
-
-  const checkEmailFormat = (checkEmail: string) => {
-    var validRegex =
-      /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
-    if (checkEmail.match(validRegex)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const [emailQuery, setEmailQuery] = useState<string>(email);
   const handleEmailQuery = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -62,7 +53,8 @@ const EmailForm = () => {
       type="search"
       variant="outlined"
       helperText={errorData.errorText}
-      className={classes.inputText}
+      className={classes.textField}
+      value = {emailQuery}
       onChange={handleEmailQuery}
       sx={{
         focus: {
@@ -72,6 +64,7 @@ const EmailForm = () => {
         input: { color: "white" },
         label: {
           color: "rgb(133, 133, 133)",
+          backgroundColor:"black"
         },
       }}
     />
@@ -80,10 +73,19 @@ const EmailForm = () => {
 export default EmailForm;
 
 const useStyles = makeStyles({
-  inputText: {
-    borderColor: "1px solid blue",
-    input: {
+  textField: {
+    "& .MuiInputBase-root": {
+      border: "1px solid rgb(47, 51, 54)",
+    },
+    "& .Mui-focused": {
       border: "0px solid gray",
     },
+    "& .Mui-error":{
+      border: "0px solid black"
+    },
+    "":{
+      color:"black"
+    }
   },
 });
+

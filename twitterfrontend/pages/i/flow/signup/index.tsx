@@ -18,6 +18,8 @@ import {
 } from "../../../../utils/dateUtils";
 import SignUpForm from "../../../../components/signup/FlowComponents/SignUpForm";
 import { SignUpFormContext } from "../../../../contexts/SignUpFormContext";
+import ConfirmData from "../../../../components/signup/FlowComponents/ConfirmData";
+import PasswordForm from "../../../../components/signup/FlowComponents/PasswordForm";
 
 const useStyles = makeStyles({
   root: {
@@ -73,7 +75,17 @@ const SignUp = () => {
   const [year, setYear] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [flowIncrement, setFlowIncrement] = useState<number>(3);
+  const [password,setPassword] = useState<string>("");
 
+  const addIncrement = () => {
+    setFlowIncrement(flowIncrement + 1);
+  };
+  const decreaseIncrement = () => {
+    setFlowIncrement(flowIncrement - 1);
+  };
+  console.log(flowIncrement);
+  console.log("SignUp page rerender!");
   return (
     <div>
       <SignUpFormContext.Provider
@@ -88,14 +100,19 @@ const SignUp = () => {
           setName,
           email,
           setEmail,
+          password,
+          setPassword
         }}
       >
-        <SignUpForm />
+        {flowIncrement === 1 && <SignUpForm addIncrement={addIncrement} />}
+        {flowIncrement === 2 && (
+          <ConfirmData
+            decreaseIncrement={decreaseIncrement}
+            addIncrement={addIncrement}
+          />
+        )}
+        {flowIncrement === 3 && <PasswordForm decreaseIncrement={decreaseIncrement} />}
       </SignUpFormContext.Provider>
-      <div>
-        {console.log("Newcomponents is re-render!")}
-        Newcomponents
-      </div>
     </div>
   );
 };

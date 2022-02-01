@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.model';
 import { Model } from 'mongoose';
@@ -13,6 +13,7 @@ export class UserService {
 
   async getUserByEmail(email: string, throwException: boolean) {
     const user = await this.userModel.findOne({ email: email });
+    console.log(user);
     if (!user && throwException) {
       throw new HttpException('user not found please register', 401);
     } else if (user) {
@@ -29,7 +30,6 @@ export class UserService {
       console.log(user);
       if (!user) {
         console.log('Dont have data in database!');
-        console.log(1);
         throw new HttpException(`user not Found`, 404);
       } else {
         return user;
@@ -49,7 +49,7 @@ export class UserService {
         401,
       );
     } */
-    if (hasSignUser) {
+    if (!!hasSignUser) {
       throw new HttpException(
         'the user has already register please login!',
         409,
