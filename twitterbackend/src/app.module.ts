@@ -6,9 +6,11 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { RegisterModule } from './register/register.Module';
+import { TweetModule } from './tweet/tweet.module';
 
 @Module({
   imports: [
+    TweetModule,
     AuthModule,
     UserModule,
     RegisterModule,

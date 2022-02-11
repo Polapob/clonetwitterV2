@@ -59,11 +59,11 @@ export class AuthService {
       const payload: TokenPayload = { id: checkUser.id, email: email };
       const refresh_token = this.JwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1m',
+        expiresIn: '30 days',
       });
       const access_token = this.JwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1d',
+        expiresIn: '1 days',
       });
 
       delete user.password;
@@ -89,7 +89,7 @@ export class AuthService {
 
       const refresh_token = this.JwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1m',
+        expiresIn: '30 days',
       });
       const access_token = this.JwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
@@ -124,7 +124,7 @@ export class AuthService {
         const payload: TokenPayload = { id: user.id, email: user.email };
         const refresh_token = this.JwtService.sign(payload, {
           secret: process.env.JWT_SECRET,
-          expiresIn: '1m',
+          expiresIn: '30 days',
         });
         const access_token = this.JwtService.sign(payload, {
           secret: process.env.JWT_SECRET,

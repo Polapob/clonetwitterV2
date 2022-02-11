@@ -39,7 +39,7 @@ export class AuthController {
       maxAge: 8.64e7,
     });
 
-    response.status(200).send(user);
+    response.redirect('http://localhost:3000/home');
   }
   @Post('defaultLogin')
   async defaultLogin(

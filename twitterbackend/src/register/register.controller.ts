@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import { ValidationPipe } from 'src/user/validation.pipe';
 import { registerDTO } from './register.dto';
 import { Response } from 'express';
@@ -23,9 +23,6 @@ export default class RegisterController {
       httpOnly: true,
       maxAge: 8.64e7,
     });
-    //return user;
-    response.status(200).send(user);
-    //response.status(200).send('not finished');
-    return 'not finished!';
+    response.send(user);
   }
 }
