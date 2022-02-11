@@ -75,7 +75,7 @@ const SignUp = () => {
   const [year, setYear] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [flowIncrement, setFlowIncrement] = useState<number>(3);
+  const [flowIncrement, setFlowIncrement] = useState<number>(1);
   const [password,setPassword] = useState<string>("");
 
   const addIncrement = () => {

@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { getOauthGoogleLink } from "../../utils/getOAuthGoogleLink";
 
 interface Props {
   text: string;
@@ -11,6 +12,7 @@ const LoginWithOAuthButton = ({ text, OAuthType }: Props) => {
   if (OAuthType === "Google") {
     return (
       <Button
+        href = {getOauthGoogleLink()}
         startIcon={<GoogleIcon />}
         sx={{
           borderRadius: "1rem",
